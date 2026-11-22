@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Beats Studio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">◉</span> Beats Studio</div>
+    <input id="projName" class="proj-name" title="Song name" spellcheck="false">
+
+    <div class="transport">
+      <button id="btnPlay" class="tbtn play" title="Play / Pause (Space)">▶</button>
+      <button id="btnStop" class="tbtn" title="Stop (press twice to go to start)">■</button>
+      <button id="btnRec" class="tbtn rec" title="Record vocals (R)">●</button>
+      <div class="time"><div id="timePos">1.1.1</div><div id="timeSec">0:00.0</div></div>
+      <div class="seg" title="What the Play button plays">
+        <button id="modeLoop" class="active">🔁 Loop section</button>
+        <button id="modeSong">🎼 Full song</button>
+      </div>
+      <label class="pill"><input type="checkbox" id="metro"> Click</label>
+      <label class="pill"><input type="checkbox" id="countIn" checked> Count-in</label>
+    </div>
+
+    <div class="params">
+      <label>BPM <input id="bpm" type="number" min="40" max="220" step="1"></label>
+      <label>Key <select id="key"></select></label>
+      <label>Scale <select id="scale"></select></label>
+      <label>Swing <input id="swing" type="range" min="0" max="100" step="1"><span id="swingVal"></span></label>
+    </div>
+
+    <canvas id="meter" width="120" height="14" title="Master output level"></canvas>
+
+    <div class="filebtns">
+      <button id="btnUndo" title="Undo (Ctrl+Z)">↶</button>
+      <button id="btnRedo" title="Redo (Ctrl+Y)">↷</button>
+      <button id="btnNew">New</button>
+      <button id="btnOpen">Open</button>
+      <button id="btnSave" title="Save project file (Ctrl+S)">Save</button>
+      <button id="btnExport" class="primary">Export song</button>
+      <input type="file" id="fileOpen" accept=".beats,.json" hidden>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="beat">🥁 Beat Maker</button>
+    <button class="tab" data-tab="arrange">🎙️ Arrange &amp; Record</button>
+    <button class="tab" data-tab="mixer">🎚️ Mix &amp; Master</button>
+    <button class="tab" data-tab="help">❓ How to use</button>
+  </nav>
+
+  <main>
+    <section id="tab-beat" class="tabpage active"></section>
+    <section id="tab-arrange" class="tabpage"></section>
+    <section id="tab-mixer" class="tabpage"></section>
+    <section id="tab-help" class="tabpage">
+      <div class="help">
+        <h2>Make a full song in 5 steps</h2>
+        <ol>
+          <li><b>Pick a genre.</b> Click <b>New</b> and choose Worship, Rap/Trap, Hip-Hop, Jazz, Classical, Gospel, Pop, Afrobeats or R&amp;B. You get a complete song structure (intro, verse, chorus…) with drums, chords, bass and pads already playing.</li>
+          <li><b>Shape the beat</b> in <b>Beat Maker</b>. Each section (Verse, Chorus…) has its own drum pattern, chord progression and melody.
+            <ul>
+              <li>Drums: click a square to add a hit. <b>Shift+click</b> = soft ghost note. <b>Right-click</b> = hi-hat roll (2, 3 or 4 quick hits). Drag to paint.</li>
+              <li>Chords: type Roman numerals so the song can change key easily, e.g. <code>I | V | vi | IV</code>. Put two chords in one bar with a space: <code>ii7 V7</code>. Plain names like <code>Am | F | C | G</code> work too. You can also pick one from the progression list.</li>
+              <li>Melody: click to place a note. Drag to the right to make it longer. Click a note again to delete it.</li>
+              <li>Change the sounds (kit, keys, pad, bass, melody) and the playing style (held chords, arpeggio, walking bass, 808…).</li>
+            </ul>
+          </li>
+          <li><b>Arrange the song</b> in <b>Arrange &amp; Record</b>. Add, remove and reorder sections in <i>Song structure</i>. When you edit a section, every place it's used in the song changes too. Use <i>Make unique</i> if you want one copy to be different.</li>
+          <li><b>Record your voice.</b> Wear headphones. Click on the timeline where you want to start, then press <b>●</b> (or R). You get one bar of count-in clicks, then you're recording. Press ● or ■ to stop. Every take goes on the armed track (the one with the red ● lit). Add more tracks for harmonies, ad-libs or instruments. You can also <i>Import audio</i> files.
+            <ul>
+              <li>Edit a take: drag it to move it. Drag its left or right edge to trim. Drag the small top-corner handles to fade in or out. <b>S</b> splits it at the playhead. <b>Ctrl+D</b> duplicates it. <b>Delete</b> removes it.</li>
+              <li>If your takes sound late or early, adjust <i>Latency</i> in the toolbar. Then re-record, or just slide the clip.</li>
+            </ul>
+          </li>
+          <li><b>Mix &amp; master.</b> Use the vocal presets (Clean, Rap, Worship, Radio, Choir), or set EQ, compression, reverb, delay, volume and pan per track. On the master, turn on Glue and raise Loudness until it sounds full but not distorted. Then click <b>Export song</b> to get a WAV file. You can also export the instrumental only or the vocals only.</li>
+        </ol>
+        <h3>Keyboard shortcuts</h3>
+        <table class="keys">
+          <tr><td>Space</td><td>Play / stop</td></tr>
+          <tr><td>R</td><td>Record</td></tr>
+          <tr><td>L</td><td>Toggle loop section / full song</td></tr>
+          <tr><td>S</td><td>Split selected clip at playhead</td></tr>
+          <tr><td>Delete</td><td>Delete selected clip</td></tr>
+          <tr><td>Ctrl+D</td><td>Duplicate selected clip</td></tr>
+          <tr><td>Ctrl+Z / Ctrl+Y</td><td>Undo / redo</td></tr>
+          <tr><td>Ctrl+S</td><td>Save project file</td></tr>
+          <tr><td>Home</td><td>Playhead to start</td></tr>
+        </table>
+        <p class="muted">Your work autosaves in this browser. Use <b>Save</b> to keep a project file (recordings included) that you can open on another computer.</p>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="dlgNew">
+    <h2>Start a new song</h2>
+    <p class="muted">Pick a genre to start from. Everything can be changed afterwards.</p>
+    <div id="genreGrid" class="genre-grid"></div>
+    <div class="dlg-actions"><button id="newCancel">Cancel</button></div>
+  </dialog>
+
+  <dialog id="dlgExport">
+    <h2>Export</h2>
+    <p class="muted">Renders the whole arrangement through the mixer and master to a high-quality WAV file.</p>
+    <div class="export-opts">
+      <button data-export="full" class="primary">🎵 Full song</button>
+      <button data-export="instrumental">🥁 Instrumental (beat only)</button>
+      <button data-export="vocals">🎙️ Vocals only (acapella)</button>
+    </div>
+    <div id="exportStatus" class="muted"></div>
+    <div class="dlg-actions"><button id="exportClose">Close</button></div>
+  </dialog>
+
+  <input type="file" id="fileAudio" accept="audio/*" multiple hidden>
+  <div id="toast"></div>
+
+  <script src="js/synth.js"></script>
+  <script src="js/presets.js"></script>
+  <script src="js/engine.js"></script>
+  <script src="js/recorder.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>

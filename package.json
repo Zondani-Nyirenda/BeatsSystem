@@ -1,0 +1,9 @@
+{
+  "name": "beats-studio",
+  "version": "1.0.0",
+  "description": "Browser music studio: make beats in any genre, record vocals, edit, mix and export full songs.",
+  "private": true,
+  "scripts": {
+    "start": "node serve.js"
+  }
+}
